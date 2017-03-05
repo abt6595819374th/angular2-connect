@@ -74,6 +74,20 @@ routes.forEach(route => {
 });
 
 /**
+ * This is here to test ajax requests
+ */
+app.get('/api/test', (req, res) => {
+  res.send({
+    results: [
+      {name: 'test 1'},
+      {name: 'test 2'},
+      {name: 'test 3'},
+      {name: 'test 4'}
+    ]
+  })
+});
+
+/**
  * if you want to use universal for all routes, you can use the '*' wildcard
  */
 
