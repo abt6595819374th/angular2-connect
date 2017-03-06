@@ -67,12 +67,13 @@
            required
            name="houseNumber" [(ngModel)]="model.houseNumber"
            #houseNumber="ngModel"
-           (change)="validateAddress(event)">
+           (change)="validateAddress(event)"
+           addressValidator>
 
     <div *ngIf="houseNumber.errors && (houseNumber.dirty || houseNumber.touched)"
          class="alert alert-danger">
       <div [hidden]="!houseNumber.errors.required">
-        Last name is required
+        House number is required
       </div>
     </div>
   </div>

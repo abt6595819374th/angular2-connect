@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MetaService } from '../meta.service';
 import { Http, Response } from '@angular/http';
+import { FormGroup, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -27,9 +28,13 @@ export class FormComponent implements OnInit {
         houseNumber: this.model.houseNumber,
         postalCode: this.model.postalCode
       }
-      this.http.post('http://localhost:4200/api/validateAddress', request).subscribe((data: Response) => {
-        console.log('data.json().results', data.json().results);
-      });
+      this.http.post('http://localhost:4200/api/validateAddress', request).subscribe(
+        (data: Response) => {
+          console.log('data.json().results', data.json().results);
+        },
+        (err) => {
+          console.log('err', err);
+        });
     }
 
   }

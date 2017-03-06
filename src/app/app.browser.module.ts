@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { MetaService } from './meta.service';
+import { AddressValidatorDirective } from './address-validator.directive';
 
 /**
  * Top-level NgModule "container"
@@ -23,7 +24,7 @@ import { MetaService } from './meta.service';
   /** Root App Component */
   bootstrap: [ AppComponent ],
   /** Our Components */
-  declarations: [ AppComponent, FormComponent, HomeComponent ],
+  declarations: [ AppComponent, FormComponent, HomeComponent, AddressValidatorDirective ],
   imports: [
     /**
      * NOTE: Needs to be your first import (!)

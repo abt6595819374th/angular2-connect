@@ -12,8 +12,7 @@ import { AppModule } from './app/app.node.module';
 import { environment } from './environments/environment';
 import { routes } from './server.routes';
 
-var multer  = require('multer')
-var upload = multer()
+var bodyParser = require('body-parser');
 
 // App
 
@@ -21,6 +20,7 @@ const app  = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 const port = process.env.PORT || 4200;
 
+app.use(bodyParser.json());
 
 /**
  * enable prod mode for production environments
@@ -93,15 +93,11 @@ app.get('/api/test', (req, res) => {
 });
 
 app.post('/api/validateAddress', (req, res) => {
-  console.log(req.body);
-  /*res.send({
-    results: [
-      {name: 'test 1'},
-      {name: 'test 2'},
-      {name: 'test 3'},
-      {name: 'test 4'}
-    ]
-  })*/
+  if (req.body.houseNumber === '0') {
+    res.send(404);
+  } else {
+    res.send({});
+  }
 });
 
 /**
