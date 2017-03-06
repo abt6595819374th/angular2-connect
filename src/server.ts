@@ -12,11 +12,15 @@ import { AppModule } from './app/app.node.module';
 import { environment } from './environments/environment';
 import { routes } from './server.routes';
 
+var multer  = require('multer')
+var upload = multer()
+
 // App
 
 const app  = express();
 const ROOT = path.join(path.resolve(__dirname, '..'));
 const port = process.env.PORT || 4200;
+
 
 /**
  * enable prod mode for production environments
@@ -36,6 +40,7 @@ app.set('view engine', 'html');
  * Enable compression
  */
 app.use(compression());
+
 
 /**
  * serve static files
@@ -85,6 +90,18 @@ app.get('/api/test', (req, res) => {
       {name: 'test 4'}
     ]
   })
+});
+
+app.post('/api/validateAddress', (req, res) => {
+  console.log(req.body);
+  /*res.send({
+    results: [
+      {name: 'test 1'},
+      {name: 'test 2'},
+      {name: 'test 3'},
+      {name: 'test 4'}
+    ]
+  })*/
 });
 
 /**

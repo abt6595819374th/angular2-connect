@@ -1,3 +1,85 @@
-<p *ngFor="let item of items">
-  {{ item.name }}
-</p>
+<form #connectForm="ngForm">
+  <div class="form-group">
+    <label for="name">Name</label>
+
+    <input type="text" id="name" class="form-control"
+           required minlength="4" maxlength="24"
+           name="name" [(ngModel)]="model.name"
+           #name="ngModel" >
+
+    <div *ngIf="name.errors && (name.dirty || name.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!name.errors.required">
+        Name is required
+      </div>
+      <div [hidden]="!name.errors.minlength">
+        Name must be at least 4 characters long.
+      </div>
+      <div [hidden]="!name.errors.maxlength">
+        Name cannot be more than 24 characters long.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="last_name">Last name</label>
+
+    <input type="text" id="last_name" class="form-control"
+           required minlength="4" maxlength="24"
+           name="lastName" [(ngModel)]="model.lastName"
+           #lastName="ngModel" >
+
+    <div *ngIf="lastName.errors && (lastName.dirty || lastName.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!lastName.errors.required">
+        Last name is required
+      </div>
+      <div [hidden]="!lastName.errors.minlength">
+        Last name must be at least 4 characters long.
+      </div>
+      <div [hidden]="!lastName.errors.maxlength">
+        Last name cannot be more than 24 characters long.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="postal_code">Postal code</label>
+
+    <input type="text" id="postal_code" class="form-control"
+           required
+           name="postalCode" [(ngModel)]="model.postalCode"
+           #postalCode="ngModel"
+           (change)="validateAddress(event)">
+
+    <div *ngIf="postalCode.errors && (postalCode.dirty || postalCode.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!postalCode.errors.required">
+        Postal code is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="house_number">House number</label>
+
+    <input type="text" id="house_number" class="form-control"
+           required
+           name="houseNumber" [(ngModel)]="model.houseNumber"
+           #houseNumber="ngModel"
+           (change)="validateAddress(event)">
+
+    <div *ngIf="houseNumber.errors && (houseNumber.dirty || houseNumber.touched)"
+         class="alert alert-danger">
+      <div [hidden]="!houseNumber.errors.required">
+        Last name is required
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button [disabled]="!connectForm.valid" class="btn btn-primary btn-lg">
+      Sign up
+    </button>
+  </div>
+</form>
